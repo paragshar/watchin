@@ -1,0 +1,391 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/users",
+    "apis":[
+    {
+        "path":"/users.json",
+        "description":"Operation for registering a users.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Register a new users.",
+            "responseClass":"void",
+            "nickname":"postusersRegister",
+            "parameters":[
+            {
+                "name":"user[email]",
+                "description":"The users E-Mail address.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"user[password]",
+                "description":"The password, at least 8 characters long.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"user[name]",
+                "description":"The users name displayed in the app.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"email, usersname or password are missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/users/sign_in.json",
+        "description":"Operation for Sign in a users.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Check whether users credentials are correct Or Sign in.",
+            "responseClass":"void",
+            "nickname":"postusersSignin",
+            "notes":"<strong>This method requires email and password </strong>",
+            "parameters":[
+            {
+                "name":"user[email]",
+                "description":"The users email.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"user[password]",
+                "description":"The user password.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usersname or password are missing."
+            },
+            {
+                "code":401,
+                "reason":"The provided credentials are incorect."
+            },
+            {
+                "code":403,
+                "reason":"Account not verified within 96 hours."
+            },
+            {
+                "code":405,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/users/{usersIdOrHash}/change-password",
+        "description":"Operation for updating the password an users.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Update a users password by usersIdOrHash. <strong style=\"color: black\">(Auth only for usersId)</strong>",
+            "responseClass":"void",
+            "nickname":"putUpdateusersPwById",
+            "parameters":[
+            {
+                "name":"usersIdOrHash",
+                "description":"The usersIdOrHash to update.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"oldPassword",
+                "description":"The userss old password for confirmation. <strong>Is required when usersId specified.</strong>",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"newPassword",
+                "description":"The new password.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usersIdOrHash, oldPassword or newPasssword is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/users/{usersId}.json",
+        "description":"Operation for reading an users.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read an users by id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"getusersById",
+            "parameters":[
+            {
+                "name":"usersId",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usersId is missing."
+            },
+            {
+                "code":403,
+                "reason":"Account not verified within 96 hours."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/users.json",
+        "description":"Operation for reading users of an event.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of users of an event.",
+            "responseClass":"void",
+            "nickname":"getusersList"
+           
+        }
+        ]
+    },
+    {
+        "path":"/users/{usersNameOrMail}/recover-password",
+        "description":"Operation for recovering users password.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Request a password recovery mail for a users by usersname or email.",
+            "responseClass":"void",
+            "nickname":"getusersRecoverPassword",
+            "parameters":[
+            {
+                "name":"usersNameOrMail",
+                "description":"The usersname or email for retreiving the password for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usersname or email is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            },
+            {
+                "code":429,
+                "reason":"Maximum activation mail requests within 24 hours reached."
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/users/{usersNameOrMail}/request-activation-mail",
+        "description":"Operation for requesting the activation mail again.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Request the activation mail for a users by usersname or email.",
+            "responseClass":"void",
+            "nickname":"getusersRequestActivationMail",
+            "parameters":[
+            {
+                "name":"usersNameOrMail",
+                "description":"The usersname or email for retreiving the password for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usersname or email is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            },
+            {
+                "code":429,
+                "reason":"Maximum activation mail requests within 24 hours reached."
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/users.json?auth_token={auth_token}",
+        "description":"Operation for updating a logged in user.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update a logged in users by <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"putUpdateuserByAuth",
+            "parameters":[
+            
+			{
+                "name":"auth_token",
+                "description":"The authToken required for update.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"user[name]",
+                "description":"The users Name.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usersId is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/users/sign_out.json?auth_token={auth_token}",
+        "description":"Operation for signout a user.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Sign out a users by auth token.",
+            "notes":"This can only be done by the logged in users.",
+            "responseClass":"void",
+            "nickname":"signoutuserByauthToken",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth_token of a user for signout.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usersnameOrEmail is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

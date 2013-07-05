@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <title>Documentation</title>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+        <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+        <script src='lib/jquery.min.js' type='text/javascript'></script>
+        <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
+        <script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
+        <script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+        <script src='lib/handlebars.runtime-1.0.0.beta.6.js' type='text/javascript'></script>
+        <script src='lib/underscore-min.js' type='text/javascript'></script>
+        <script src='lib/backbone-min.js' type='text/javascript'></script>
+        <script src='lib/swagger.js' type='text/javascript'></script>
+        <script src='swagger-ui.js' type='text/javascript'></script>
+
+        <style type="text/css">
+            .swagger-ui-wrap {
+                max-width: 960px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .icon-btn {
+                cursor: pointer;
+            }
+
+            #message-bar {
+                min-height: 30px;
+                text-align: center;
+                padding-top: 10px;
+            }
+
+            .message-success {
+                color: #89BF04;
+            }
+
+            .message-fail {
+                color: #cc0000;
+            }
+            .description {
+                padding: 10px; background-color: #f1f2f1; border: 1px #c8c8c8 solid; border-radius: 6px;
+            }
+        </style>
+
+        <script type="text/javascript">
+            $(function () {
+                window.swaggerUi = new SwaggerUi({
+                    discoveryUrl:"resources.json",
+                    apiKey:"",
+                    dom_id:"swagger-ui-container",
+                    supportHeaderParams: false,
+                    supportedSubmitMethods: ['get', 'post', 'put', 'delete']
+                });
+
+                window.swaggerUi.load();
+            });
+
+        </script>
+    </head>
+
+    <body>
+        <div class="swagger-ui-wrap">
+            <h1>Documentation</h1>
+            <p>The webservice is used for managing users, events, posts and comments.</p>
+            <h2>API-URL</h2>
+            <p class="description">https://someurl.com/ Be aware of the http<strong>s</strong></p>
+            <h2>API-Key</h2>
+            <p class="description">The api key has to be added as a GET parameter called 'apiKey' added to each request.</p>
+            <h2>Authentication</h2>
+            <p class="description">The authentication is done through access tokens. Whenever the POST /user/authenticate method is called,
+                                   a new access token for the specified user is generated. This token has to be passed as an additional 
+                                   'Access-Token' request header to each request that needs authentication.</p>
+            <h2>Request headers</h2>
+            <p class="description">Accept: application/json<br />
+                Content-Type: application/x-www-form-urlencoded</p>
+            <h2>Request body</h2>
+            <p class="description">If not specified differently, the body has to be sent as form data.</p>
+            <h2>JSONP</h2>
+            <p class="description">JSONP is now supported by adding the GET-Parameter 'jsonp=functionName'</p>
+            <h2>Response codes</h2>
+            <div class="description">
+                <p>The following are global response codes, which can be returned at any request. Request-specific status
+                    codes are listed at each operation.</p>
+                <ul>
+                    <li><strong>200</strong> Success</li>
+                    <li><strong>400</strong> Required fields are missing</li>
+                    <li><strong>401</strong> Permission denied</li>
+                    <li><strong>403</strong> Forbidden (action not allowed for this object)</li>
+                    <li><strong>405</strong> Method not allowed (HTTP method not allowed for this request)</li>
+                    <li><strong>409</strong> Conflict (no object by selected parameter or unique constraint fails.)</li>
+                    <li><strong>415</strong> Invalid data type</li>
+                    <li><strong>500</strong> Fatal server error</li>
+                </ul>
+            </div>
+
+            <h2>Detailed error codes</h2>
+            <div class="description">
+                <p>Additionally to the general HTTP Response code 409 for confilcts, there is a list of errorcodes specifying
+                    detailed error information in the json response.</p>
+                <p><strong>user codes</strong></p>
+                <ul>
+                    <li><strong>100</strong> No user by this userId.</li>
+                    <li><strong>101</strong> Username length has to be between 3 and 16 characters.</li>
+                    <li><strong>102</strong> Username invalid characters.</li>
+                    <li><strong>103</strong> Password length has to be between 6 and 32 characters.</li>
+                    <li><strong>104</strong> Password invalid characters.</li>
+                    <li><strong>105</strong> E-Mail invalid.</li>
+                    <li><strong>106</strong> Username invalid characters.</li>
+                    <li><strong>107</strong> Invalid status.</li>
+                    <li><strong>108</strong> Invalid fieldKey specified.</li>
+                    <li><strong>109</strong> Username already in use.</li>
+                    <li><strong>110</strong> E-Mail already in use.</li>
+                    <li><strong>111</strong> Firstname length has to be between 2 and 64 characters.</li>
+                    <li><strong>112</strong> Lastname length has to be between 2 and 64 characters.</li>
+                    <li><strong>113</strong> E-Mail is too long, max 255 characters.</li>
+                    <li><strong>114</strong> Locale is too long, max 8 characters.</li>
+                    <li><strong>115</strong> Username contains invalid characters, only a-z0-9_-.</li>
+                    <li><strong>116</strong> No role by this roleName.</li>
+                </ul>
+                <br/><p><strong>event codes</strong></p>
+                <ul>
+                    <li><strong>120</strong> No event by this eventCode.</li>
+                    <li><strong>121</strong> No event by this eventId.</li>
+                    <li><strong>122</strong> Invalid start date.</li>
+                    <li><strong>123</strong> Invalid end date.</li>
+                    <li><strong>124</strong> Invalid status.</li>
+                    <li><strong>125</strong> User already a subscriber of the event.</li>
+                    <li><strong>126</strong> User not a subscriber, not removed from the event.</li>
+                    <li><strong>127</strong> Name is too long, max 128 characters.</li>
+                    <li><strong>128</strong> Subtitle is too long, max 128 characters.</li>
+                    <li><strong>129</strong> Description is too long, max 255 characters.</li>
+                    <li><strong>130</strong> Code is too long, max 32 characters.</li>
+                    <li><strong>131</strong> Code already in use.</li>
+                    <li><strong>132</strong> Invalid visibility.</li>
+                    <li><strong>133</strong> Freetext is too long, max 1000 characters.</li>
+                    <li><strong>134</strong> Firstname of the bride is too long, max 64 characters.</li>
+                    <li><strong>135</strong> Firstname of the groom is too long, max 64 characters.</li>
+                    <li><strong>136</strong> Invalid wedding date.</li>
+                </ul>
+                <br/>
+                <p><strong>post codes</strong></p>
+                <ul>
+                    <li><strong>140</strong> No post by this postId.</li>
+                    <li><strong>141</strong> User already likes this post.</li>
+                    <li><strong>142</strong> User does not like the post, can not be removed.</li>
+                    <li><strong>143</strong> Invalid postType specified.</li>
+                    <li><strong>144</strong> Invalid image type specified.</li>
+                    <li><strong>145</strong> Invalid type filter specified.</li>
+                    <li><strong>146</strong> Invalid sort filter specified.</li>
+                    <li><strong>147</strong> File could not be transfered to Amazon S3.</li>
+                    <li><strong>148</strong> File could not be fetched from Amazon S3.</li>
+                </ul>
+                <br/>
+                <p><strong>comment codes</strong></p>
+                <ul>
+                    <li><strong>160</strong> No comment by this commentId.</li>
+                    <li><strong>161</strong> Content length has to be between 3 and 5000 characters.</li>
+                </ul>
+                <br/>
+                <p><strong>location codes</strong></p>
+                <ul>
+                    <li><strong>180</strong> Invalid location specified, latitude and longitude are required.</li>
+                    <li><strong>181</strong> No location by this locationId.</li>
+                    <li><strong>182</strong> Invalid latitude value, must be specified in degrees.</li>
+                    <li><strong>183</strong> Invalid longitude value, must be specified in degrees.</li>
+                    <li><strong>184</strong> Name is too long, max 255 characters.</li>
+                </ul>
+                <br/>
+                <p><strong>pagination codes</strong></p>
+                <ul>
+                    <li><strong>190</strong> Invalid limit, has to be numeric and positive.</li>
+                    <li><strong>191</strong> Invalid offset, has to be numeric and positive.</li>
+                </ul>
+                <br/>
+                <p><strong>api key codes</strong></p>
+                <ul>
+                    <li><strong>195</strong> Invalid api key.</li>
+                </ul>            
+            </div>
+            <h2 style="margin-top: 20px">Operations</h2>
+        </div>
+
+        <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+    </body>
+
+</html>

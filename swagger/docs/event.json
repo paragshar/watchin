@@ -1,0 +1,788 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/event",
+    "apis":[
+    {
+        "path":"/event",
+        "description":"Operation for creating an event.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Create an event. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"eventPost",
+            "notes":"Either locationId, or location has to be specified.",
+            "parameters":[
+            {
+                "name":"code",
+                "description":"The code of the event, maximum 32 characters.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"name",
+                "description":"The name of the event, maximum 128 characters.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"subtitle",
+                "description":"The subtitle of the event, maximum 128 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"description",
+                "description":"The description of the event, maximum 255 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            
+            {
+                "name":"status",
+                "description":"The status of the event.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "defaultValue": "active",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "active",
+                    "readonly",
+                    "inviteonly"
+                    ]
+                },
+                "dataType":"string"
+            },
+            {
+                "name":"authorId",
+                "description":"The id of the author that owns this event.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"start",
+                "description":"The starting date and time of the event.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"end",
+                "description":"The ending date and time of the event.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"locationId",
+                "description":"The id of an existing location.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"location",
+                "description":"The location in the following format, as json: {\"name\":\"Berlin\", \"location\":\"12.123123, 12.435345\"}",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"weddingDate",
+                "description":"The date of the wedding.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"firstnameGroom",
+                "description":"The firstname of the bride, maximum 64 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"firstnameBride",
+                "description":"The firstname of the groom, maximum 64 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"description",
+                "description":"The freetext of the event, maximum 1000 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"visibility",
+                "description":"The visibility of the event.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "defaultValue": "public",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "public",
+                    "private"
+                    ]
+                },
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"code, name, start, end, status, location or authorId are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event/{eventId}/avatar",
+        "description":"Operation for setting the event avatar.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Upload an event avatar. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postEventAvatar",
+            "notes": "Requires the permission <strong>event:update</strong>",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"rawData",
+                "description":"The binary file data of the event avatar.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event/{eventId}/subscribe/{userId}",
+        "description":"Operation for subscribing to an event.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Subscribe to an event. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"subscribeToEvent",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to subscribe to.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"userId",
+                "description":"The id of the user to subscribe.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId or userId is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event/{eventId}/invite/{userEmail}",
+        "description":"Operation for inviting a user for an event.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Invite for an event. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"inviteToEvent",
+            "notes": "Requires the permission <strong>event:invite-guest</strong>",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to invite a guest for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"userEmail",
+                "description":"The email address of the guest to invite.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId or userMail is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event/{eventId}/notify",
+        "description":"Operation for sending a notification to all subscribers of the event.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Send notification in an event. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postEventNotify",
+            "notes": "Requires the permission <strong>event:update</strong>",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"message",
+                "description":"The message to send.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId or message is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event/{eventCode}",
+        "description":"Operation for reading an event.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read an event by code.",
+            "responseClass":"void",
+            "nickname":"getEventByCode",
+            "parameters":[
+            {
+                "name":"eventCode",
+                "description":"The code that needs to be fetched. Use 'webweek2012' for testing.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventCode is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event",
+        "description":"Operation for reading events a user is subscribed to.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of events with an optional filter.",
+            "responseClass":"void",
+            "nickname":"getEvent",
+            "notes": "userId and status are optional, if none of them is defined, all events are returned. Only the first filter is being used.",
+            "parameters":[
+            {
+                "name":"userId",
+                "description":"The id of the user to retreive events for.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"status",
+                "description":"A status to filter for.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "defaultValue": "",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "active",
+                    "readonly"
+                    ]
+                },
+                "dataType":"integer"
+            },
+            {
+                "name":"offset",
+                "description":"The offset of the list, default is 0.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"limit",
+                "description":"The limit of events returned, starting at the offset, default is 10.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"userId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+        {
+        "path":"/event/{eventCode}",
+        "description":"Operation for updating an event.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update an event by its eventCode. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"eventPut",
+            "notes":"Requires the permission <strong>event:update</strong>",
+            "parameters":[
+            {
+                "name":"eventCode",
+                "description":"The code of the event, maximum 32 characters.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"name",
+                "description":"The name of the event, maximum 128 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"subtitle",
+                "description":"The subtitle of the event, maximum 128 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"description",
+                "description":"The description of the event, maximum 255 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            
+            {
+                "name":"status",
+                "description":"The status of the event.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "defaultValue": "active",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "active",
+                    "readonly"
+                    ]
+                },
+                "dataType":"string"
+            },
+            {
+                "name":"start",
+                "description":"The starting date and time of the event.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"end",
+                "description":"The ending date and time of the event.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"locationId",
+                "description":"The id of an existing location.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"location",
+                "description":"The location in the following format, as json: {\"name\":\"Berlin\", \"location\":\"12.123123, 12.435345\"}",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"weddingDate",
+                "description":"The date of the wedding.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"firstnameGroom",
+                "description":"The firstname of the bride, maximum 64 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"firstnameBride",
+                "description":"The firstname of the groom, maximum 64 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"description",
+                "description":"The freetext of the event, maximum 1000 characters.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"visibility",
+                "description":"The visibility of the event.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "defaultValue": "public",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "public",
+                    "private"
+                    ]
+                },
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventCode is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+     {
+        "path":"/event/{eventId}/permit/{userId}",
+        "description":"Operation for permitting a user in an event.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update the permission of a user in an event. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"permitToEvent",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to permit for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"userId",
+                "description":"The id of the user to update permissions for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"roleName",
+                "description":"The roleName of the user in this event.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string",
+                "defaultValue": "guest",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "guest",
+                    "viewer",
+                    "admin",
+                    "hoster"
+                    ]
+                }
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId, userId or roleName are missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event/{eventId}/unsubscribe/{userId}",
+        "description":"Operation for unsubscribing from an event.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Unsubscribe from an event. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"unsubscribeFromEvent",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to unsubscribe from.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"userId",
+                "description":"The id of the user to unsubscribe.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId or userId is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/event/{eventId}/avatar",
+        "description":"Operation for deleting the event avatar.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete an event avatar. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"deleteEventAvatar",
+            "notes": "Requires the permission <strong>event:update</strong>",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

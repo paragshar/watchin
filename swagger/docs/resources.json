@@ -1,0 +1,20 @@
+{
+  "apiVersion":"1.0",
+  "swaggerVersion":"1.1",
+  "docsPath":"http://localhost/watchin/swagger/docs",
+  "basePath":"http://localhost:3000/api/",
+  "apis":[
+    {
+      "path":"/users",
+      "description":"Operations about users"
+    },
+    {
+      "path":"/friendships",
+      "description":"Operations about friendships"
+    },
+    {
+      "path":"/friendship_requests",
+      "description":"Operations about friendship_request"
+    }
+  ]
+}

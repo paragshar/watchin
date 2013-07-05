@@ -1,0 +1,710 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/user",
+    "apis":[
+    {
+        "path":"/user",
+        "description":"Operation for registering a user.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Register a new user.",
+            "responseClass":"void",
+            "nickname":"postUserRegister",
+            "parameters":[
+            {
+                "name":"email",
+                "description":"The users E-Mail address.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"username",
+                "description":"The users username, at least 3 characters.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"password",
+                "description":"The password, at least 6 characters long.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"displayname",
+                "description":"The users name displayed in the app.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"firstname",
+                "description":"The users firstname.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"lastname",
+                "description":"The users lastname.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"locale",
+                "description":"The users localization, in the following format 'de_DE'.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"email, username or password are missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{userId}/avatar",
+        "description":"Operation for setting the user avatr.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Upload a user avatar. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postUserAvatar",
+            "parameters":[
+            {
+                "name":"userId",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"rawData",
+                "description":"The binary file data of the user avatar.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"userId is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{userIdOrHash}/change-password",
+        "description":"Operation for updating the password an user.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Update a user password by userIdOrHash. <strong style=\"color: black\">(Auth only for userId)</strong>",
+            "responseClass":"void",
+            "nickname":"putUpdateUserPwById",
+            "parameters":[
+            {
+                "name":"userIdOrHash",
+                "description":"The userIdOrHash to update.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"oldPassword",
+                "description":"The users old password for confirmation. <strong>Is required when userId specified.</strong>",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"newPassword",
+                "description":"The new password.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"userIdOrHash, oldPassword or newPasssword is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{userId}",
+        "description":"Operation for reading an user.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read an user by id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"getUserById",
+            "parameters":[
+            {
+                "name":"userId",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"userId is missing."
+            },
+            {
+                "code":403,
+                "reason":"Account not verified within 96 hours."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{accessToken}",
+        "description":"Operation for reading an user by an accessToken.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read an user by accessToken.",
+            "responseClass":"void",
+            "nickname":"getUserByAccessToken",
+            "parameters":[
+            {
+                "name":"accessToken",
+                "description":"The accessToken that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"accessToken is missing."
+            },
+            {
+                "code":403,
+                "reason":"Account not verified within 96 hours."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user",
+        "description":"Operation for reading users of an event.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of users of an event.",
+            "responseClass":"void",
+            "nickname":"getUserList",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to retreive users for.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"offset",
+                "description":"The offset of the list, default is 0.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"limit",
+                "description":"The limit of events returned, starting at the offset, default is 10.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/authenticate",
+        "description":"Operation for reading a user.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Check whether user credentials are correct.",
+            "responseClass":"void",
+            "nickname":"getUserAuthenticate",
+            "notes":"<strong>This method requires username and password as HTTP-Basic Auth Header!</strong>",
+            "parameters":[
+            {
+                "name":"username",
+                "description":"The users username.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"password",
+                "description":"The password.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"username or password are missing."
+            },
+            {
+                "code":401,
+                "reason":"The provided credentials are incorect."
+            },
+            {
+                "code":403,
+                "reason":"Account not verified within 96 hours."
+            },
+            {
+                "code":405,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/check-availability",
+        "description":"Operation for checking the availability for a field.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Check whether a value for a field is available.",
+            "responseClass":"void",
+            "nickname":"getUserCheckAvailability",
+            "parameters":[
+            {
+                "name":"fieldKey",
+                "description":"The fieldKey to check availability for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "defaultValue": "username",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "username",
+                    "email"
+                    ]
+                },
+                "dataType":"string"
+            },
+            {
+                "name":"value",
+                "description":"The value to check for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"fieldKey or value are missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{userNameOrMail}/recover-password",
+        "description":"Operation for recovering user password.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Request a password recovery mail for a user by username or email.",
+            "responseClass":"void",
+            "nickname":"getUserRecoverPassword",
+            "parameters":[
+            {
+                "name":"userNameOrMail",
+                "description":"The username or email for retreiving the password for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"username or email is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            },
+            {
+                "code":429,
+                "reason":"Maximum activation mail requests within 24 hours reached."
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{userNameOrMail}/request-activation-mail",
+        "description":"Operation for requesting the activation mail again.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Request the activation mail for a user by username or email.",
+            "responseClass":"void",
+            "nickname":"getUserRequestActivationMail",
+            "parameters":[
+            {
+                "name":"userNameOrMail",
+                "description":"The username or email for retreiving the password for.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"username or email is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            },
+            {
+                "code":429,
+                "reason":"Maximum activation mail requests within 24 hours reached."
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{userIdOrHash}",
+        "description":"Operation for updating a user.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update a user by id or hash. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"putUpdateUserById",
+            "parameters":[
+            {
+                "name":"userId",
+                "description":"The userIdOrHash to update.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"email",
+                "description":"The users E-Mail address.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"displayname",
+                "description":"The users name displayed in the app.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"firstname",
+                "description":"The users firstname.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            
+            {
+                "name":"lastname",
+                "description":"The users lastname.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"locale",
+                "description":"The users localization, in the following format 'de_DE'.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"userIdOrHash is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{hash}/activate",
+        "description":"Operation for activating a user by hash.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Activate a user by activation hash.",
+            "responseClass":"void",
+            "nickname":"putActivateUserByHash",
+            "parameters":[
+            {
+                "name":"hash",
+                "description":"The activation hash.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"hash is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{usernameOrEmail}",
+        "description":"Operation for removing a user.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a user by username or email.",
+            "notes":"This can only be done by the logged in user.",
+            "responseClass":"void",
+            "nickname":"deleteUserByUsernameOrEmail",
+            "parameters":[
+            {
+                "name":"usernameOrEmail",
+                "description":"The username or email for the user that shall be deleted.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"usernameOrEmail is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/user/{userId}/avatar",
+        "description":"Operation for deleting the user avatar.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a user avatar. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"deleteUserAvatar",
+            "parameters":[
+            {
+                "name":"userId",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"userId is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

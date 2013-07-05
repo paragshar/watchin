@@ -1,0 +1,146 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/friendships",
+    "apis":[
+    {
+        "path":"/friendships.json?auth_token={auth_token}&friend_id={friend_id}",
+        "description":"Operation for accepting a friend request",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Add a new friend. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postFriendCreate",
+            "notes": "This only can be done after comming friend request",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth token required for accepting a friend request.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"friend_id",
+                "description":"The friend id who sent friend request.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId, authorId or message are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/friendships.json",
+        "description":"Operation for getting all friends for a logged in user.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of friends for a logged in user.",
+            "responseClass":"void",
+            "nickname":"getFriends",
+            "parameters":[
+            
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/friendships/{friendship_id}.json?auth_token={auth_token}",
+        "description":"Operation for removing a friend.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a friend by friendship_id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"deleteFriendByFriendshipId",
+           
+            "parameters":[
+			{
+                "name":"auth_token",
+                "description":"The auth token required for removing a friend from friend list.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"friendship_id",
+                "description":"The friendship_id is required for delete a friendship relation",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

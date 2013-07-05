@@ -1,0 +1,143 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/post",
+    "apis":[
+    {
+        "path":"/friendship_requests.json?auth_token={auth_token}&friend_id={friend_id}",
+        "description":"Operation for creating an image post.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Send friendship request <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postFriendshipRequest",
+            "notes": "Requires the auth_token",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                 "dataType":"string"
+            },
+            {
+                "name":"friend_id",
+                "description":"The id of the friend which you want to send a friend request",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"FriendId are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/friendship_requests.json",
+        "description":"Operation for reading a friendship request.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read all friendship requests",
+            "responseClass":"void",
+            "nickname":"getFriendshipRequests",
+            "parameters":[
+            
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/friendship_requests/{friendship_request_id}.json?auth_token={auth_token}",
+        "description":"Operation for removing a post.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a friendship request by friendship_request_id. <strong style=\"color: black\">(Auth)</strong>",
+            "notes":"This can only be done by the logged in user.",
+            "responseClass":"void",
+            "nickname":"deleteFriendshipRequestById",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"friendship_request_id",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"Friendship request id is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}
