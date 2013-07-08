@@ -1,0 +1,248 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/channels",
+    "apis":[
+    {
+        "path":"/channels.json?auth_token={auth_token}",
+        "description":"Operation for accepting a friend request",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Add a new Channel. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postChannelCreate",
+            "notes": "This only can be done by admin",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth token required for creating a channel.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"channel[name]",
+                "description":"Channel name",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/channels.json",
+        "description":"Operation for getting all channels.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of channels.",
+            "responseClass":"void",
+            "nickname":"getChannels",
+            "parameters":[
+            
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/channels/{channel_id}.json",
+        "description":"Operation for getting channel details.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a channel details.",
+            "responseClass":"void",
+            "nickname":"getChannelById",
+            "parameters":[
+            {
+                "name":"channel_id",
+                "description":"The channel id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/channels/{channel_id}.json?auth_token={auth_token}",
+        "description":"Operation for updating a channel.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update a channel by channel_id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"updateChannelByChannelId",
+			"notes": "This only can be done by admin",
+            "parameters":[
+			{
+                "name":"auth_token",
+                "description":"The auth token required for updating a channel.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"channel_id",
+                "description":"The channel_id is required for updating a channel",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+			{
+                "name":"channel[name]",
+                "description":"Channel name",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/channels/{channel_id}.json?auth_token={auth_token}",
+        "description":"Operation for removing a channel.",
+		"notes": "This only can be done by admin",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a channel by channel_id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"deleteChannelByChannelId",
+           
+            "parameters":[
+			{
+                "name":"auth_token",
+                "description":"The auth token required for removing a channel.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"channel_id",
+                "description":"The channel_id is required for delete a channel",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

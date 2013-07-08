@@ -1,0 +1,264 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/programmes",
+    "apis":[
+    {
+        "path":"/programmes.json?auth_token={auth_token}",
+        "description":"Operation for accepting a friend request",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Add a new programme. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postProgrammeCreate",
+            "notes": "This only can be done by admin",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth token required for creating a programme.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"programme[name]",
+                "description":"programme name",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"programme[channel_id]",
+                "description":"Channel Id",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/programmes.json",
+        "description":"Operation for getting all programmes.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of programmes.",
+            "responseClass":"void",
+            "nickname":"getProgrammes",
+            "parameters":[
+            
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/programmes/{programme_id}.json",
+        "description":"Operation for getting programme details.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a programme details.",
+            "responseClass":"void",
+            "nickname":"getProgrammeById",
+            "parameters":[
+            {
+                "name":"programme_id",
+                "description":"The programme id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/programmes/{programme_id}.json?auth_token={auth_token}",
+        "description":"Operation for updating a programme.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update a programme by programme_id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"updateProgrammeByProgrammeId",
+			"notes": "This only can be done by admin",
+            "parameters":[
+			{
+                "name":"auth_token",
+                "description":"The auth token required for updating a programme.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"programme_id",
+                "description":"The programme_id is required for updating a programme",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+			{
+                "name":"programme[name]",
+                "description":"programme name",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"programme[channel_id]",
+                "description":"channel id",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/programmes/{programme_id}.json?auth_token={auth_token}",
+        "description":"Operation for removing a programme.",
+		"notes": "This only can be done by admin",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a programme by programme_id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"deleteProgrammeByProgrammeId",
+           
+            "parameters":[
+			{
+                "name":"auth_token",
+                "description":"The auth token required for removing a programme.",
+                "paramType":"path",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"programme_id",
+                "description":"The programme_id is required for delete a programme",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

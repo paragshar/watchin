@@ -15,6 +15,14 @@
     {
       "path":"/friendship_requests",
       "description":"Operations about friendship_request"
+    },
+	{
+      "path":"/channels",
+      "description":"Operations about channels"
+    },
+	{
+      "path":"/programmes",
+      "description":"Operations about programmes"
     }
   ]
 }
