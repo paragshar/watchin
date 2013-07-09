@@ -23,6 +23,10 @@
 	{
       "path":"/programmes",
       "description":"Operations about programmes"
+    },
+	{
+      "path":"/messages",
+      "description":"Operations about messages"
     }
   ]
 }

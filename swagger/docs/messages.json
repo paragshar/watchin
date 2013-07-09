@@ -1,30 +1,49 @@
 {
     "apiVersion":"0.1",
     "swaggerVersion":"1.1",
-    "resourcePath":"/channels",
+    "resourcePath":"/messages",
     "apis":[
     {
-        "path":"/channels.json?auth_token={auth_token}",
-        "description":"Operation for accepting a friend request",
+        "path":"/messages.json?auth_token={auth_token}",
+        "description":"Operation for creating a message for a logged in user.",
         "operations":[
         {
             "httpMethod":"POST",
-            "summary":"Add a new Channel. <strong style=\"color: black\">(Auth)</strong>",
+            "summary":"Create a new message.",
             "responseClass":"void",
-            "nickname":"postChannelCreate",
-            "notes": "This only can be done by admin",
+            "nickname":"postMessageCreate",
             "parameters":[
             {
                 "name":"auth_token",
-                "description":"The auth token required for creating a channel.",
+                "description":"Auth token required for posting a message",
                 "paramType":"path",
-                "required": true,
+                "required":true,
                 "allowMultiple":false,
                 "dataType":"string"
             },
             {
-                "name":"channel[name]",
-                "description":"Channel name",
+                "name":"message[channel_id]",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"message[programme_id]",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"message[message]",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"message[view_ability]",
                 "paramType":"query",
                 "required":true,
                 "allowMultiple":false,
@@ -37,8 +56,40 @@
                 "reason":""
             },
             {
-                "code":401,
+                "code":405,
                 "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/messages/{message_id}.json",
+        "description":"Operation for reading a message.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read an message by id",
+            "responseClass":"void",
+            "nickname":"getMessageById",
+            "parameters":[
+            {
+                "name":"message_id",
+                "description":"The id that needs to be fetched.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"Id is missing."
             },
             {
                 "code":403,
@@ -57,162 +108,21 @@
         ]
     },
     {
-        "path":"/channels.json",
-        "description":"Operation for getting all channels.",
+        "path":"/messages.json",
+        "description":"Operation for reading loggedin users messages.",
         "operations":[
         {
             "httpMethod":"GET",
-            "summary":"Read a list of channels.",
+            "summary":"Read a list of messages for a logged in user.<strong style=\"color: black\">(Login required)</strong>",
             "responseClass":"void",
-            "nickname":"getChannels",
+            "nickname":"getMessageList",
             "parameters":[
             
             ],
             "errorResponses":[
             {
                 "code":400,
-                "reason":""
-            },
-            {
-                "code":403,
-                "reason":""
-            },
-            {
-                "code":405,
-                "reason":""
-            },
-            {
-                "code":409,
-                "reason":""
-            }
-            ]
-        }
-        ]
-    },
-	{
-        "path":"/channels/{channel_id}.json",
-        "description":"Operation for getting channel details.",
-        "operations":[
-        {
-            "httpMethod":"GET",
-            "summary":"Read a channel details.",
-            "responseClass":"void",
-            "nickname":"getChannelById",
-            "parameters":[
-            {
-                "name":"channel_id",
-                "description":"The channel id that needs to be fetched.",
-                "paramType":"path",
-                "required":true,
-                "allowMultiple":false,
-                "dataType":"integer"
-            }
-            ],
-            "errorResponses":[
-            {
-                "code":400,
-                "reason":""
-            },
-            {
-                "code":403,
-                "reason":""
-            },
-            {
-                "code":405,
-                "reason":""
-            },
-            {
-                "code":409,
-                "reason":""
-            }
-            ]
-        }
-        ]
-    },
-	{
-        "path":"/channels/get_programmes/{channel_id}.json",
-        "description":"Operation for getting programmes for a channel details.",
-        "operations":[
-        {
-            "httpMethod":"GET",
-            "summary":"Read a channels programme.",
-            "responseClass":"void",
-            "nickname":"getProgrammeByChannelId",
-            "parameters":[
-            {
-                "name":"channel_id",
-                "description":"The channel id for which programmes needs to be fetched.",
-                "paramType":"path",
-                "required":true,
-                "allowMultiple":false,
-                "dataType":"integer"
-            }
-            ],
-            "errorResponses":[
-            {
-                "code":400,
-                "reason":""
-            },
-            {
-                "code":403,
-                "reason":""
-            },
-            {
-                "code":405,
-                "reason":""
-            },
-            {
-                "code":409,
-                "reason":""
-            }
-            ]
-        }
-        ]
-    },
-	{
-        "path":"/channels/{channel_id}.json?auth_token={auth_token}",
-        "description":"Operation for updating a channel.",
-        "operations":[
-        {
-            "httpMethod":"PUT",
-            "summary":"Update a channel by channel_id. <strong style=\"color: black\">(Auth)</strong>",
-            "responseClass":"void",
-            "nickname":"updateChannelByChannelId",
-			"notes": "This only can be done by admin",
-            "parameters":[
-			{
-                "name":"auth_token",
-                "description":"The auth token required for updating a channel.",
-                "paramType":"path",
-                "required": true,
-                "allowMultiple":false,
-                "dataType":"string"
-            },
-            {
-                "name":"channel_id",
-                "description":"The channel_id is required for updating a channel",
-                "paramType":"path",
-                "required":true,
-                "allowMultiple":false,
-                "dataType":"integer"
-            },
-			{
-                "name":"channel[name]",
-                "description":"Channel name",
-                "paramType":"query",
-                "required":true,
-                "allowMultiple":false,
-                "dataType":"string"
-            }
-            ],
-            "errorResponses":[
-            {
-                "code":400,
-                "reason":""
-            },
-            {
-                "code":401,
-                "reason":""
+                "reason":"eventId is missing."
             },
             {
                 "code":403,
@@ -231,28 +141,103 @@
         ]
     },
     {
-        "path":"/channels/{channel_id}.json?auth_token={auth_token}",
-        "description":"Operation for removing a channel.",
-		"notes": "This only can be done by admin",
+        "path":"/messages/{message_id}.json?auth_token={auth_token}",
+        "description":"Operation for updating a message.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update a message by id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"putUpdateMessageById",
+            "parameters":[
+			{
+                "name":"message_id",
+                "description":"Message id required for posting a message",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"auth_token",
+                "description":"Auth token required for posting a message",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"message[channel_id]",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"message[programme_id]",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"message[message]",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"message[view_ability]",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"Message id is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/messages/{message_id}.json?auth_token={auth_token}",
+        "description":"Operation for removing a message.",
         "operations":[
         {
             "httpMethod":"DELETE",
-            "summary":"Delete a channel by channel_id. <strong style=\"color: black\">(Auth)</strong>",
+            "summary":"Delete a message by message id.",
+            "notes":"This can only be done by the logged in user.",
             "responseClass":"void",
-            "nickname":"deleteChannelByChannelId",
-           
+            "nickname":"deleteMessageById",
             "parameters":[
-			{
+           {
                 "name":"auth_token",
-                "description":"The auth token required for removing a channel.",
+                "description":"The auth token required for removing a message.",
                 "paramType":"path",
                 "required": true,
                 "allowMultiple":false,
                 "dataType":"string"
             },
             {
-                "name":"channel_id",
-                "description":"The channel_id is required for delete a channel",
+                "name":"message_id",
+                "description":"The message id is required for delete a message",
                 "paramType":"path",
                 "required":true,
                 "allowMultiple":false,
