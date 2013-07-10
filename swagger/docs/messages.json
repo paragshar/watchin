@@ -140,6 +140,94 @@
         }
         ]
     },
+	{
+        "path":"/messages/friends.json?auth_token={auth_token}",
+        "description":"Operation for reading all friends messages.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of messages by all friends for a logged in user.<strong style=\"color: black\">(Login required)</strong>",
+            "responseClass":"void",
+            "nickname":"getFriendsMessageList",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"Auth token required for posting a message.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/messages/friends/{programme_id}.json?auth_token={auth_token}",
+        "description":"Operation for reading all friends messages.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of messages by all friends for a logged in user.<strong style=\"color: black\">(Login required)</strong>",
+            "responseClass":"void",
+            "nickname":"getFriendsMessageListByProgrammeId",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"Auth token required for posting a message.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"programme_id",
+                "description":"Reading all friends message for a particular programme by programme id",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
     {
         "path":"/messages/{message_id}.json?auth_token={auth_token}",
         "description":"Operation for updating a message.",
