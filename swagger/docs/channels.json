@@ -29,6 +29,14 @@
                 "required":true,
                 "allowMultiple":false,
                 "dataType":"string"
+            },
+			{
+                "name":"channel[image]",
+                "description":"Channel Image",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
             }
             ],
             "errorResponses":[
@@ -170,6 +178,86 @@
         ]
     },
 	{
+        "path":"/channels/public.json?auth_token={auth_token}",
+        "description":"Operation for getting latest public channels depending on the latest message or logged in user viewing channel.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read latest public channels.<strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"getPublicChannels",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth token required for getting public latest channels.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/channels/private.json?auth_token={auth_token}",
+        "description":"Operation for getting latest private channels depending on the latest message or logged in user viewing channel.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read latest private channels.<strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"getPrivateChannels",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth token required for getting private latest channels.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
         "path":"/channels/{channel_id}.json?auth_token={auth_token}",
         "description":"Operation for updating a channel.",
         "operations":[
@@ -199,6 +287,14 @@
 			{
                 "name":"channel[name]",
                 "description":"Channel name",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"channel[image]",
+                "description":"Channel Image",
                 "paramType":"query",
                 "required":true,
                 "allowMultiple":false,

@@ -319,12 +319,20 @@
                 "required":true,
                 "allowMultiple":false,
                 "dataType":"string"
+            },
+			{
+                "name":"user[photo]",
+                "description":"User Profile Pic.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
             }
             ],
             "errorResponses":[
             {
                 "code":400,
-                "reason":"usersId is missing."
+                "reason":""
             },
             {
                 "code":401,

@@ -228,6 +228,102 @@
         }
         ]
     },
+	{
+        "path":"/messages/public/{channel_id}.json?auth_token={auth_token}",
+        "description":"Operation for getting latest public messages depending on the latest message or logged in user viewing channel.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read latest public messages.<strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"getPublicMessages",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth token required for getting public latest messages.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"channel_id",
+                "description":"Channel id is for which message will be fetch.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+	{
+        "path":"/messages/private/{channel_id}.json?auth_token={auth_token}",
+        "description":"Operation for getting latest private messages depending on the latest message or logged in user viewing channel.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read latest private messages.<strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"getPrivateMessages",
+            "parameters":[
+            {
+                "name":"auth_token",
+                "description":"The auth token required for getting private latest messages.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+			{
+                "name":"channel_id",
+                "description":"Channel id is for which message will be fetch.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
     {
         "path":"/messages/{message_id}.json?auth_token={auth_token}",
         "description":"Operation for updating a message.",
