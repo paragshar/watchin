@@ -182,11 +182,11 @@
             "errorResponses":[
             {
                 "code":400,
-                "reason":"usersId is missing."
+                "reason":""
             },
             {
                 "code":403,
-                "reason":"Account not verified within 96 hours."
+                "reason":""
             },
             {
                 "code":405,
@@ -202,14 +202,54 @@
     },
     {
         "path":"/users.json",
-        "description":"Operation for reading users of an event.",
+        "description":"Operation for reading users list.",
         "operations":[
         {
             "httpMethod":"GET",
-            "summary":"Read a list of users of an event.",
+            "summary":"Read a list of users list.",
             "responseClass":"void",
             "nickname":"getusersList"
            
+        }
+        ]
+    },
+	{
+        "path":"/users/search.json?search={search}",
+        "description":"Operation for searching users by email or name.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Search an users by email or name",
+            "responseClass":"void",
+            "nickname":"getSearchUser",
+            "parameters":[
+            {
+                "name":"search",
+                "description":"The name or email that needs to be search for user.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
         }
         ]
     },
