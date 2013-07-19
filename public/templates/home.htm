@@ -1,0 +1,15 @@
+<p class="pull-right"><a href="#/signup" class='btn btn-info'>Create free account</a>  <a href="#/login" class='tdright btn btn-info'>Login</a></p>
+<h3>Public Activity</h3>
+<p>Search: <input ng-model="search"><p>
+<table class="table table-bordered pull-left">
+    <thead>
+    	<th>Id</th>
+    	<th>Name</th>
+    	<th>Email</th>
+    </thead>
+    <tr ng-repeat="user in users.data | filter:search" >
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+    </tr>
+</table>

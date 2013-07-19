@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+    	<h3>SIGN-UP SHEET</h3>
+    	<form name="myForm" ng-submit="create()">
+    		<div class="control-group">
+			  <label class="control-label" for="name">Name</label>
+			  <div class="controls">
+			    <input type="text" id="name" name="username" placeholder="Name" ng-model="User.user.name"  required>
+			</div>
+			<div class="control-group">
+			  <label class="control-label" for="email">Email</label>
+			  <div class="controls">
+			    <input type="email" id="email" name="useremail" placeholder="Email" ng-model="User.user.email"  required>
+			  </div>
+			 </div>
+			 <div class="control-group">
+			    <label class="control-label" for="password">Password</label>
+			    <div class="controls">
+			      <input type="password" id="password" name="userpassword" placeholder="Password" ng-model="User.user.password" required>
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <div class="controls">
+			      <button type="submit" class="btn">Sign me up!</button>
+			    </div>
+			</div>
+		</form>
+	</div>
+</div>
