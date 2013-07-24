@@ -1,6 +1,6 @@
 <?php
 $request_uri = $_SERVER['REQUEST_URI'];
-$url = str_replace('/watchin/public/request.php', 'http://192.168.1.9:3000', $request_uri);
+$url = str_replace('/watchin/public/request.php', 'http://192.168.1.8:3000', $request_uri);
 //print_r($url);
 $data = file_get_contents('php://input');
 //print_r($data);

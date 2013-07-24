@@ -1,0 +1,35 @@
+<h3>User Profile</h3>
+<div ng-show="user_detail">
+	<div class="control-group">
+	  	<label  class="control-label" for="name">Name: {{userData.data.name}}</label>
+	</div>  
+	<div class="control-group">
+		<label class="control-label" for="email">Email: {{userData.data.email}}</label>
+	</div>
+	<div class="control-group">
+	    <div class="controls">
+	      <a ng-click="user_profile()" class="btn btn-info">Edit!</a>
+	    </div>
+	</div>
+</div>
+
+<div ng-show="user_update">
+	<div class="control-group">
+	  <label class="control-label" for="name">Name</label>
+	  <div class="controls">
+	    <input value="{{userData.data.name}}" type="text" id="name" name="username" placeholder="Name" ng-model="User.user.name">
+	  </div>
+	</div>  
+	<div class="control-group">
+	  <label class="control-label" for="email">Email</label>
+	  <div class="controls">
+	    <input value="{{userData.data.email}}" type="email" id="email" name="useremail" placeholder="Email" ng-model="User.user.email"  required>
+	  </div>
+	 </div>
+	 <div class="control-group">
+	    <div class="controls">
+	      <a ng-click="userUpdate()" class="btn btn-info">Update!</a>
+	    </div>
+	</div>
+</div>
+
