@@ -17,6 +17,7 @@
     <script src="js/router.js" type="text/javascript"></script>
     <script src="js/resources.js" type="text/javascript"></script>
     <script src="js/controllers/users.js" type="text/javascript"></script>
+    <script src="js/controllers/friends.js" type="text/javascript"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap-combined.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
@@ -35,7 +36,9 @@
                 <div>
                 	<span>
 	                	<p ng-show="loggedIn" class="pull-right">
-	                		<a href="#/home" class='tdright btn btn-info'>My Space</a>
+	                		<a href="#/home" class='tdright btn btn-info'>Home</a>
+	                		<a href="#/my_friends" class='tdright btn btn-info'>My Friends</a>
+	                		<a href="#/approve_requests" class='tdright btn btn-info'>Approve Requests</a>
 	                		<a href="#/user_profile" class='tdright btn btn-info'>My Profile</a>
 							<a href="#/logout" class='tdright btn btn-info'>Logout</a>
 						</p>

@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="row-fluid">
-		<h3>Public Activity</h3>
+		<h3>My Friends</h3>
 		<p>Search: <input ng-model="search"><p>
 		<table class="table table-bordered pull-left">
 		    <thead>
@@ -9,11 +9,11 @@
 		    	<th>Email</th>
 		    	<th>Action</th>
 		    </thead>
-		    <tr ng-repeat="user in users.data | filter:search" >
-		        <td>{{user.id}}</td>
-		        <td>{{user.name}}</td>
-		        <td>{{user.email}}</td>
-		        <td><a class="btn btn-success" ng-click="addFriend(user.id)">Add Friend</a></td>
+		    <tr ng-repeat="friend in friends.data | filter:search" >
+		    	<td>{{friend.user_id}}</td>
+		        <td>{{friend.name}}</td>
+		        <td>{{friend.email}}</td>
+		        <td><a ng-click = 'approveRequest(friend.user_id)' class="btn">Approve</a></td>
 		    </tr>
 		</table>
 	</div>

@@ -3,21 +3,21 @@ var url = 'http://localhost/watchin/public/request.php';
 
 var WatchinNgApp = angular.module('watchinApp', ['restangular', 'ngCookies']);
 
-WatchinNgApp.run(['$rootScope', 'DataService', '$location', '$cookieStore', function(root, DataService, $location, $cookieStore) {
+WatchinNgApp.run(['$rootScope', 'UserApi', '$location', '$cookieStore', function(root, UserApi, $location, $cookieStore) {
 	root.$on('$routeChangeSuccess', function(scope, currView, prevView) { 
 		
 		root.loggedIn = $cookieStore.get('loggedin');
 		if (root.loggedIn == "true") {
 			root.loggedOut = "";
-			DataService.isLogged = true;
+			UserApi.isLogged = true;
 		}
 		else {
 			root.loggedOut = "true";
-			DataService.isLogged = false;
+			UserApi.isLogged = false;
 		}
 		
 		if(currView){
-			if (!currView.access.isFree && !DataService.isLogged) {
+			if (!currView.access.isFree && !UserApi.isLogged) {
 				$location.path('/login');
 			}
 		}

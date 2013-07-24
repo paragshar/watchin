@@ -5,7 +5,7 @@ WatchinNgApp.config(['$routeProvider', 'RestangularProvider', function($routePro
 	  
 	$routeProvider.when('/home', {
 		templateUrl: 'templates/home.htm',
-		controller: userListCtrl,
+		controller: homeCtrl,
 		access: { isFree: false	}
 	});	
 	
@@ -24,6 +24,18 @@ WatchinNgApp.config(['$routeProvider', 'RestangularProvider', function($routePro
 	$routeProvider.when('/user_profile', {
 		templateUrl: 'templates/user_profile.htm', 
 		controller: userProfileCtrl,
+		access: { isFree: false }
+	});
+	
+	$routeProvider.when('/my_friends', {
+		templateUrl: 'templates/my_friends.htm', 
+		controller: friendsListCtrl,
+		access: { isFree: false }
+	});
+	
+	$routeProvider.when('/approve_requests', {
+		templateUrl: 'templates/approve_request.htm', 
+		controller: FriendshipRequestListCtrl,
 		access: { isFree: false }
 	});
 	

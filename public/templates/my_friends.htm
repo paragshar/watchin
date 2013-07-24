@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<h3>My Friends</h3>
+		<p>Search: <input ng-model="search"><p>
+		<table class="table table-bordered pull-left">
+		    <thead>
+		    	<th>Id</th>
+		    	<th>Name</th>
+		    	<th>Email</th>
+		    </thead>
+		    <tr ng-repeat="friend in friends.data | filter:search" >
+		    	<td>{{friend.user_id}}</td>
+		        <td>{{friend.name}}</td>
+		        <td>{{friend.email}}</td>
+		    </tr>
+		</table>
+	</div>
+</div>

@@ -1,4 +1,4 @@
-WatchinNgApp.factory("DataService", function (Restangular) {
+WatchinNgApp.factory("UserApi", function (Restangular) {
 	var users = Restangular.all('users');
 	var user = Restangular.one('users');
 	var user_login = Restangular.all('users/sign_in');
@@ -15,5 +15,17 @@ WatchinNgApp.factory("DataService", function (Restangular) {
         user: user,
         user_login: user_login,
         user_logout: user_logout
+    };
+});
+
+WatchinNgApp.factory("FriendApi", function (Restangular) {
+	var friends = Restangular.all('friendships');
+	var friend = Restangular.one('friendships');
+	var friend_request = Restangular.one('friendship_requests');
+	
+    return {
+    	friends: friends,
+        friend: friend,
+        friend_request: friend_request
     };
 });

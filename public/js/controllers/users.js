@@ -2,37 +2,37 @@
  * user registration
  * @param $scope
  * @param $location
- * @param DataService
+ * @param UserApi
  */
-function signupCtrl ($scope, $location, DataService) {
+function signupCtrl ($scope, $location, UserApi) {
 	$scope.create = function () {
-		DataService.users.post($scope.User).then(function(){
+		UserApi.users.post($scope.User).then(function(){
 			$location.path('/home');
 		});
 	}
 }
 
-function loginCtrl ($scope, $location, DataService, $cookieStore) {
+function loginCtrl ($scope, $location, UserApi, $cookieStore) {
 	$scope.login = function () {
-		DataService.user_login.post($scope.User).then(function (response){
+		UserApi.user_login.post($scope.User).then(function (response){
 			if(response.user){
-				DataService.username = response.user.name;
+				UserApi.username = response.user.name;
 				$cookieStore.put('auth_token', response.auth_token);
 				$cookieStore.put('user_id', response.user.id);
 				$cookieStore.put('loggedin', 'true');
 				$location.path('/home');
 			}else{
-				DataService.username = '';
+				UserApi.username = '';
 				$location.path('/login');
 			}
 		});
 	}
 }
 
-function logoutCtrl (DataService, $location, $cookieStore) {
+function logoutCtrl (UserApi, $location, $cookieStore) {
 	var user_logout = {auth_token: $cookieStore.get('auth_token')};
-	DataService.user_logout.remove(user_logout).then(function() {
-		DataService.username = '';
+	UserApi.user_logout.remove(user_logout).then(function() {
+		UserApi.username = '';
 		$cookieStore.put('auth_token', '');
 		$cookieStore.put('loggedin', '');
 		$cookieStore.put('user_id', '');
@@ -40,13 +40,18 @@ function logoutCtrl (DataService, $location, $cookieStore) {
 	});
 }
 
-function userListCtrl ($scope, DataService) {
-	$scope.user_name =  DataService.username;
-	$scope.users = DataService.users.getList();
+function homeCtrl ($scope, UserApi, FriendApi, $cookieStore, $location) {
+	$scope.users = UserApi.users.getList();
+	
+	$scope.addFriend = function (user_id) {
+		FriendApi.friend_request.customPOST("", {'auth_token': $cookieStore.get('auth_token')}, "",{'friend_id': user_id}).then(function (response) {
+			console.log(response);
+		});
+	}
 }
 
-function userProfileCtrl ($scope, DataService, $cookieStore, $location, Restangular) {
-	$scope.userData = DataService.user.one($cookieStore.get('user_id')).get();
+function userProfileCtrl ($scope, UserApi, $cookieStore, $location, Restangular) {
+	$scope.userData = UserApi.user.one($cookieStore.get('user_id')).get();
 	$scope.user_detail = "true";
 	
 	$scope.user_profile = function () {
@@ -58,7 +63,7 @@ function userProfileCtrl ($scope, DataService, $cookieStore, $location, Restangu
 		console.log($scope.User);
 		console.log($cookieStore.get('auth_token'));
 		var auth_token = {'auth_token': $cookieStore.get('auth_token')};
-		DataService.users.customPUT("",auth_token, "", $scope.User).then(function (response){
+		UserApi.users.customPUT("",auth_token, "", $scope.User).then(function (response){
 			$scope.userData = response;
 		});
 		$scope.user_update = "";
