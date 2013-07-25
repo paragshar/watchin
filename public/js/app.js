@@ -7,6 +7,7 @@ WatchinNgApp.run(['$rootScope', 'UserApi', '$location', '$cookieStore', function
 	root.$on('$routeChangeSuccess', function(scope, currView, prevView) { 
 		
 		root.loggedIn = $cookieStore.get('loggedin');
+		root.userName = $cookieStore.get('user_name');
 		if (root.loggedIn == "true") {
 			root.loggedOut = "";
 			UserApi.isLogged = true;

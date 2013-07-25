@@ -1,7 +1,8 @@
 <div class="container-fluid">
 	<div class="row-fluid">
-		<h3>Public Activity</h3>
-		<p>Search: <input ng-model="search"><p>
+		<h3>My Activity</h3>
+		<p>Search: <input type="text" ng-model="mySearch" class="search-query" 
+			placeholder="Enter a name or email here" ng-change="searchUser()" />
 		<table class="table table-bordered pull-left">
 		    <thead>
 		    	<th>Id</th>

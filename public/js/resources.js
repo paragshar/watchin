@@ -3,10 +3,10 @@ WatchinNgApp.factory("UserApi", function (Restangular) {
 	var user = Restangular.one('users');
 	var user_login = Restangular.all('users/sign_in');
 	var user_logout = Restangular.one('users/sign_out');
+	var users_search = Restangular.one('users/search');
 	
 	var user_auth = {
 			isLogged: false,
-			username: ''
 		};
 	
     return {
@@ -14,7 +14,8 @@ WatchinNgApp.factory("UserApi", function (Restangular) {
         users: users,
         user: user,
         user_login: user_login,
-        user_logout: user_logout
+        user_logout: user_logout,
+        users_search: users_search
     };
 });
 

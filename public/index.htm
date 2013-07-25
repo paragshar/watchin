@@ -34,21 +34,19 @@
             <div class="span10 offset1">
                 <h1 class="well" ><a href="#/home">Watchin</a></h1>
                 <div>
-                	<span>
-	                	<p ng-show="loggedIn" class="pull-right">
-	                		<a href="#/home" class='tdright btn btn-info'>Home</a>
-	                		<a href="#/my_friends" class='tdright btn btn-info'>My Friends</a>
-	                		<a href="#/approve_requests" class='tdright btn btn-info'>Approve Requests</a>
-	                		<a href="#/user_profile" class='tdright btn btn-info'>My Profile</a>
-							<a href="#/logout" class='tdright btn btn-info'>Logout</a>
-						</p>
-						
-						<p ng-show="loggedOut" class="pull-right">
-							<a href="#/signup" class='btn btn-info'>Create free account</a>  
-							<a href="#/login" class='tdright btn btn-info'>Login</a>
-						</p>
+                	<h4 class="pull-right muted text-info" ng-show="loggedIn">Welcome {{userName}}</h4><br><br>
+                	<p ng-show="loggedIn" class="pull-right">
+                		<a href="#/home" class='tdright btn btn-info'>Home</a>
+                		<a href="#/my_friends" class='tdright btn btn-info'>My Friends</a>
+                		<a href="#/approve_requests" class='tdright btn btn-info'>Approve Requests</a>
+                		<a href="#/user_profile" class='tdright btn btn-info'>My Profile</a>
+						<a href="#/logout" class='tdright btn btn-info'>Logout</a>
+					</p>
 					
-					</span>
+					<p ng-show="loggedOut" class="pull-right">
+						<a href="#/signup" class='btn btn-info'>Create free account</a>  
+						<a href="#/login" class='tdright btn btn-info'>Login</a>
+					</p>
                 </div>
                 <div ng-view></div>
             </div>
