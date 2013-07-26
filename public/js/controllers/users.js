@@ -11,7 +11,7 @@ function homeCtrl ($scope, UserApi, FriendApi, $cookieStore, $location) {
 	}
 	
 	$scope.searchUser = function() {                
-        UserApi.users_search.customGET("", {'search': $scope.mySearch}, "").then(function (response) {
+        UserApi.users_search.get({'search': $scope.mySearch}).then(function (response) {
         	if(response.status == 'success'){
         		$scope.users = response;
         	}
