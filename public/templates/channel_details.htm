@@ -1,0 +1,27 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div>
+			<a class="pull-left"><img width="80" ng-src="{{url+channel.data.image_url}}" alt="{{channel.data.name}} image" /></a>
+			<h3>{{channel.data.name}}</h3>
+		</div>
+		<div>
+			<p class="pull-left"><a ng-click="getChannelPrograms(channel.data.id)" class="btn btn-primary btn-mini"><i class="icon-white icon-list"></i>Program List</a>
+			<p class="pull-right">Search: <input type="text" ng-model="search" class="search-query" placeholder="Enter a name or language here"><p>
+		</div>
+		
+		<div ng-show = 'channelPrograms')>
+			<table class="table table-bordered pull-left">
+			    <thead>
+			    	<th>Program Id</th>
+			    	<th>Name</th>
+			    	<th>Action</th>
+			    </thead>
+			    <tr ng-repeat="program in channelPrograms.data | filter:search" >
+			    	<td>{{program.id}}</td>
+			        <td>{{program.name}}</td>
+			        <td><a ng-click = 'addToFavorite()' class="btn btn-success btn-mini"><i class="icon-heart icon-white"></i></a></td>
+			    </tr>
+			</table>
+		</div>
+	</div>
+</div>

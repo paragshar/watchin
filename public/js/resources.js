@@ -30,3 +30,19 @@ WatchinNgApp.factory("FriendApi", function (Restangular) {
         friend_request: friend_request
     };
 });
+
+WatchinNgApp.factory("ChannelApi", function (Restangular) {
+	var channels = Restangular.all('channels');
+	var channel = Restangular.one('channels');
+	var public_channels = Restangular.all('channels/public');
+	var private_channels = Restangular.all('channels/private');
+	var channel_programs = Restangular.all('channels/get_programmes')
+	
+    return {
+    	channels: channels,
+    	channel: channel,
+    	private_channels: private_channels,
+    	public_channels: public_channels,
+    	channel_programs: channel_programs
+    };
+});

@@ -21,6 +21,18 @@ WatchinNgApp.config(['$routeProvider', 'RestangularProvider', function($routePro
 		access: { isFree: true }
 	});
 	
+	$routeProvider.when('/channel_list', {
+		templateUrl: 'templates/channel_list.htm', 
+		controller: channelListCtrl,
+		access: { isFree: false }
+	});
+	
+	$routeProvider.when('/channel/:channelId', {
+		templateUrl: 'templates/channel_details.htm', 
+		controller: channelDetailsCtrl,
+		access: { isFree: false }
+	});
+	
 	$routeProvider.when('/user_profile', {
 		templateUrl: 'templates/user_profile.htm', 
 		controller: userProfileCtrl,

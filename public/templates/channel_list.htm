@@ -1,0 +1,21 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<h3>Channel List</h3>
+		<p class="pull-left"><button ng-click = "getPublicChannels()" class="btn btn-primary btn-mini">Public Channels</button> <button ng-click = "getPrivateChannels();" class="btn btn-primary btn-mini">Private Channels</button></p>
+		<p class="pull-right">Search: <input type="text" ng-model="search" class="search-query" placeholder="Enter a name or language here"><p>
+		<table class="table table-bordered pull-left">
+		    <thead>
+		    	<th>Channel</th>
+		    	<th>Name</th>
+		    	<th>Language</th>
+		    	<th>Action</th>
+		    </thead>
+		    <tr ng-repeat="channel in channels.data | filter:search" >
+		    	<td><img width="80" ng-src="{{url+channel.image_url}}" alt="{{channel.name}}" /></td>
+		        <td>{{channel.name}}</td>
+		        <td>{{channel.language}}</td>
+		        <td><a href="#/channel/{{channel.id}}" class="btn btn-success btn-small"><i class="icon-info-sign icon-white"></i>Details</a> <a ng-click = 'addToFavorite()' class="btn btn-success btn-mini"><i class="icon-heart icon-white"></i></a></td>
+		    </tr>
+		</table>
+	</div>
+</div>
