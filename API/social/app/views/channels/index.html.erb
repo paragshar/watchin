@@ -1,0 +1,25 @@
+<h1>Channels#index</h1>
+<p>
+	Find me in app/views/channels/index.html.erb
+</p>
+<h3><%= link_to_unless_current 'Add New Channel', new_channel_path %></h3>
+<table width="100%" border="1">
+	<th>Id</th>
+	<th>Logo</th>
+	<th>Name</th>
+	<th>Created</th>
+	<th>Updated</th>
+	<th>Action</th>
+	<% @channels.each do |channel| %>
+	<tr>
+		<td><%= channel.id %></td>
+		<td><%= image_tag channel.image.url, :size => '100x100' %></td>
+		<td><%= channel.name %></td>
+		
+
+		<td><%= time_ago_in_words(channel.created_at) %></td>
+		<td><%= time_ago_in_words(channel.updated_at) %></td>
+		<td>(<%= link_to "remove", channel, :method => :delete %>) | (<%= link_to "Edit", edit_channel_path(channel) %>) | (<%= link_to "View", channel_path(channel) %>)</td>
+	</tr>
+	<% end %>
+</table>

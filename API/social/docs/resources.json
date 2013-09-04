@@ -1,0 +1,28 @@
+{
+  "apiVersion":"1.0",
+  "swaggerVersion":"1.1",
+  "docsPath":"http://localhost/docs",
+  "basePath":"https://api.wedznap.com/",
+  "apis":[
+    {
+      "path":"/event",
+      "description":"Operations about events"
+    },
+    {
+      "path":"/comment",
+      "description":"Operations about comments"
+    },
+    {
+      "path":"/user",
+      "description":"Operations about users"
+    },
+    {
+      "path":"/post",
+      "description":"Operations about posts"
+    },
+	{
+      "path":"/location",
+      "description":"Operations about locations"
+    }
+  ]
+}

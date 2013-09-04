@@ -1,0 +1,52 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<h2>show</h2>
+<% debug @user %>
+<% image_tag @user.photo.url (:small)%>
+<%= image_tag @user.photo.url %>
+
+
+<h3>Name <%= @user.name %></h3><br />
+<h3>Email <%= @user.email %></h3><br />
+
+<h2>Your Friendship</h2>
+<%= debug @user.friendships %>
+<ul>
+  <% for friendship in @user.friendships %>
+  <li>
+    <%= h friendship.friend.name %>, <%= h friendship.friend.email %>, <%= h friendship.friend.id %>, <%= h friendship.id %>
+    (<%= link_to "remove", friendship, :method => :delete %>)
+     
+  </li>
+  <% end %>  
+</ul>
+
+<h2>Your Friendship Request Sent</h2>
+<ul>
+  <% for frnd_request in @user.friendship_requests %>
+  <li>
+    <%= h frnd_request.friend.name %>, <%= h frnd_request.friend.email %>, <%= h frnd_request.friend.id %>, <%= h frnd_request.id %>
+    (<%= link_to "remove", frnd_request, :method => :delete %>)
+  
+  </li>
+  
+  <% end %>  
+</ul>
+
+<h2>Your Friendship Request Recived</h2>
+<ul>
+  <% for user in @user.inverse_friend_requests %>
+  <li><%= h user.name %>, <%= h user.email %>, <%= h user.id %>
+  (<%= link_to "Accept", friendships_path(:friend_id => user), :method => :post %>)
+ 
+  <% for frnd_req in user.friendship_requests %>
+		<% if frnd_req.user_id ==  user.id  && frnd_req.friend_id == current_user.id %>
+		<%= frnd_req.id %>
+  				 (<%= link_to "Reject", frnd_req, :method => :delete %>)
+  
+ 	
+  		<% end %>
+  <% end %>  
+  </li>
+  <% end %>
+</ul>

@@ -1,0 +1,12 @@
+<h2>My Friendship</h2>
+<%= debug @friends %>
+
+<ul>
+  <% for friendship in @friends %>
+  <li>
+    <%= h friendship.friend.name %>, <%= h friendship.friend.email %>, <%= h friendship.friend.id %>, <%= h friendship.id %>
+    (<%= link_to "remove", friendship, :method => :delete %>)
+     
+  </li>
+  <% end %>  
+</ul>

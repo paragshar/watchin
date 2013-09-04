@@ -1,0 +1,24 @@
+<h1>Edit Channel</h1>
+<%= form_for @channel do |f| %>
+<% if @channel.errors.any? %>
+<h2>Errors:</h2>
+<ul>
+	<% @channel.errors.full_messages.each do |message| %>
+	<li>
+		<%= message %>
+	</li>
+	<% end %>
+</ul>
+<% end %>
+<p>
+	<%= f.label :name %>	<br />
+	<%= f.text_field :name %>
+</p>
+<p><%= f.label :image %><%= image_tag @channel.image.url, :size => '100x100'  %><br />
+  <%= f.file_field :image %></p>
+
+<p>
+	<%= f.submit "Update Channel" %>
+</p>
+
+<% end %>

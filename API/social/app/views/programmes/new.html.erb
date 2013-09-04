@@ -1,0 +1,27 @@
+<h1> Add New Programme</h1>
+<%= form_for @programme do |f| %>
+	<% if @programme.errors.any? %>
+		<h2>Errors:</h2>
+		<ul>
+			<% @programme.errors.full_messages.each do |message| %>	
+				<li> <%= message %></li>
+			<% end %>	
+		</ul>
+	<% end %>
+	<p>
+		<%= f.label :Channel %><br />
+		<%= select_tag "programme[channel_id]", options_from_collection_for_select(@channels, "id", "name"), :prompt => "Select Channel" %>
+		
+		
+	</p>
+	<p>
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</p>
+	
+	
+	<p>
+		<%= f.submit "Save Programme" %>
+	</p>
+
+<% end %>

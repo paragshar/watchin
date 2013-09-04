@@ -1,0 +1,8 @@
+<h1>Message#show</h1>
+<h2>show</h2>
+<h4>Message : <%= @message.message %></h4><br />
+<h4>User : <%= @message.user.name %></h4><br />
+<h4>Channel Name : <%= @message.channel.name %></h4><br />
+<h4>Programme Name : <%= @message.programme.name %></h4><br />
+<h4>Created at : <%= time_ago_in_words(@message.created_at) %></h4><br />
+<h4>Updated at : <%= time_ago_in_words(@message.updated_at) %></h4><br />

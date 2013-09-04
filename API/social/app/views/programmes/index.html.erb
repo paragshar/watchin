@@ -1,0 +1,23 @@
+<h1>Programmess#index</h1>
+<p>
+	Find me in app/views/channels/index.html.erb
+</p>
+<h3><%= link_to_unless_current 'Add New Programme', new_programme_path %></h3>
+<table width="100%" border="1">
+	<th>Id</th>
+	<th>Name</th>
+	<th>Channel</th>
+	<th>Created</th>
+	<th>Updated</th>
+	<th>Action</th>
+	<% @programmes.each do |programme| %>
+	<tr>
+		<td><%= programme.id %></td>
+		<td><%= programme.name %></td>
+		<td><%= programme.channel.name %></td>
+		<td><%= time_ago_in_words(programme.created_at) %></td>
+		<td><%= time_ago_in_words(programme.updated_at) %></td>
+		<td>(<%= link_to "remove", programme, :method => :delete %>) | (<%= link_to "Edit", edit_programme_path(programme) %>) |(<%= link_to "View", programme_path(programme) %>) </td>
+	</tr>
+	<% end %>
+</table>

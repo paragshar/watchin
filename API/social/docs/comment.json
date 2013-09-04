@@ -1,0 +1,209 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/comment",
+    "apis":[
+    {
+        "path":"/comment",
+        "description":"Operation for creting creating a comment.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Creates a new comment. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postCommentCreate",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id of the post creating a comment for.",
+                "paramType":"query",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"authorId",
+                "description":"The id of the user creating the comment.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"content",
+                "description":"The content of the comment.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId, authorId or message are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/comment",
+        "description":"Operation for reading comments for a post.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of comments for a post.",
+            "responseClass":"void",
+            "nickname":"getComments",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id of the post, comments have to be selected for.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"offset",
+                "description":"The offset of the list, default is 0.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"limit",
+                "description":"The limit of comments returned, starting at the offset, default is 10.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/comment/count",
+        "description":"Operation for counting comments of a post.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Count comments for a post.",
+            "responseClass":"void",
+            "nickname":"getCommentCount",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id of the post to count comments for.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/comment/{commentId}",
+        "description":"Operation for removing a comment.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a comment by id. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"deleteCommentById",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"commentId",
+                "description":"The id for the comment that should be deleted.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"commentId is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

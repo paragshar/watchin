@@ -1,0 +1,58 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/location",
+    "apis":[
+    {
+        "path":"/location/autocomplete",
+        "description":"Operation for getting existing locations by keyword.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Reads existing location.",
+            "responseClass":"void",
+            "nickname":"getLocationAutocomplete",
+            "parameters":[
+            {
+                "name":"keyword",
+                "description":"The name the location has to start with.",
+                "paramType":"query",
+                "required": true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"offset",
+                "description":"The offset of the list, default is 0.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"limit",
+                "description":"The limit of locations returned, starting at the offset, default is 5.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"keyword is missing."
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }]
+}

@@ -1,0 +1,23 @@
+<h2>My Friends List</h2>
+<table width="100%" border="1">
+	<th>Id</th>
+	<th>Name</th>
+	<th>Email</th>
+	
+	<th>Created</th>
+	<th>Updated</th>
+	<th>Actions</th>
+	
+<% @friends.each do |friend| %>
+<tr>
+	<td><%= friend.id %></td>
+	<td><%= friend.name %></td>
+	<td><%= friend.email %></td>
+	
+	<td><%= time_ago_in_words(friend.created_at) %></td>
+	<td><%= time_ago_in_words(friend.updated_at) %></td>
+	<td></td>
+</tr>
+<% end %>
+</table>		
+<%= debug @friends %>

@@ -1,0 +1,61 @@
+<h1>Users#Search</h1>
+<p>
+	Find me in app/views/users/index.html.erb
+</p>
+<% debug @users %>
+<%= form_tag(users_search_path, method: "get") do %>
+ <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<table width="100%" border="1">
+	<th>Id</th>
+	<th>Photo</th>>
+	<th>Name</th>
+	<th>Email</th>
+
+	<th>Created</th>
+	<th>Updated</th>
+	<th>Actions</th>
+	<% if @users.present? %>
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= user.id %></td>
+		<td><%= image_tag user.photo.url, :size => '100x100' %></td>
+		<td><%= user.name %></td>
+		<td><%= user.email %></td>
+
+		<td><%= time_ago_in_words(user.created_at) %></td>
+		<td><%= time_ago_in_words(user.updated_at) %></td>
+		<td> <% if @friends %>
+		<% i = 0 %>
+		<% @friends.each do |friend| %>
+		<% if friend.friend_id == user.id %>
+		<% i = 1 %>
+		<%= link_to "Remove Friend", friend, :confirm => "Are you sure?", :method => :delete %>
+		<% end %>
+		<% end %>
+
+		<% if i == 0 %>
+		<% flag = 0 %>
+			<% for frnd_request in current_user.friendship_requests %>
+			
+				<% if frnd_request.friend_id == user.id %>
+					Friendship request Sent
+					<% flag = 1 %>
+				<% end %>
+			<% end %>
+		<% if flag == 0 %>
+		<% link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+		<%= link_to "Send Friend Request", friendship_requests_path(:friend_id => user), :method => :post %>
+		<% end %>
+		<% end %>
+		<% end %> </td>
+	</tr>
+	<% end %>
+	<% else %>
+		<tr><td colspan="7">No Uses Found.</td></tr>
+	<% end %>
+</table>
+
+<% debug @users %>

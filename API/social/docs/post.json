@@ -1,0 +1,636 @@
+{
+    "apiVersion":"0.1",
+    "swaggerVersion":"1.1",
+    "resourcePath":"/post",
+    "apis":[
+    {
+        "path":"/post",
+        "description":"Operation for creating an image post.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Create an image post. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postImagePost",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"postType",
+                "description":"The type of the post to be uploaded.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "defaultValue": "image",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "image"
+                    ]
+                },
+                "dataType":"string"
+            },
+            {
+                "name":"authorId",
+                "description":"The id of the author the post belongs to.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"eventId",
+                "description":"The id of the event the post shall be assigned to.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"content",
+                "description":"The content, in this case it is plain text, since the postType is not set.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"location",
+                "description":"Comma-separated latitude, longitude pair in degrees, e.g. '52.519444, 13.406667'.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"rawData",
+                "description":"The binary file data to send, onnly required for type image",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"authorId, eventId or location are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post",
+        "description":"Operation for creating a text post.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Create a text post. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postTextPost",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"postType",
+                "description":"The type of the post to be uploaded.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "defaultValue": "text",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "text"
+                    ]
+                },
+                "dataType":"string"
+            },
+            {
+                "name":"authorId",
+                "description":"The id of the author the post belongs to.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"eventId",
+                "description":"The id of the event the post shall be assigned to.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"content",
+                "description":"The content, in this case it is plain text, since the postType is not set.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"location",
+                "description":"Comma-separated latitude, longitude pair in degrees, e.g. '52.519444, 13.406667'.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"authorId or eventId are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post/{postId}/like/{userId}",
+        "description":"Operation for liking a post.",
+        "operations":[
+        {
+            "httpMethod":"POST",
+            "summary":"Like a post. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"postPostLike",
+            "notes": "Requires the permission <strong>user:permit</strong>",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id of the post that shall be liked.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"userId",
+                "description":"The id of the user that wants to like the post.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId or userId are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post",
+        "description":"Operation for reading posts for an event.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a list of posts for an event.",
+            "responseClass":"void",
+            "nickname":"getPost",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to retreive posts for.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"type",
+                "description":"A filter to select only specific post types.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "defaultValue": "",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "image",
+                    "text"
+                    ]
+                },
+                "dataType":"string"
+            },
+            {
+                "name":"sort",
+                "description":"A filter to sort the posts for.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "defaultValue": "",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "created-ASC",
+                    "created-DESC",
+                    "activity-ASC",
+                    "activity-DESC"
+                    ]
+                },
+                "dataType":"string"
+            },
+            {
+                "name":"offset",
+                "description":"The offset of the list, default is 0.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"limit",
+                "description":"The limit of posts returned, starting at the offset, default is 10.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"integer"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post/{postId}",
+        "description":"Operation for reading a post.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Read a post by id.",
+            "responseClass":"void",
+            "nickname":"getPostById",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id of the post that shall be read.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post/count",
+        "description":"Operation for counting posts of an event.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Count posts for an event.",
+            "responseClass":"void",
+            "nickname":"getPostCount",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to count posts for.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+        {
+        "path":"/post/pack",
+        "description":"Operation for creating a zip archive for posts of an event.",
+        "operations":[
+        {
+            "httpMethod":"GET",
+            "summary":"Pack post images for an event. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"getPostPack",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"eventId",
+                "description":"The id of the event to pack posts for.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"imageSize",
+                "description":"The size of the images to pack. The values can be different, based on the local configuration.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "defaultValue": "text",
+                "allowableValues": {
+                    "valueType": "LIST",
+                    "values": [
+                    "small",
+                    "medium",
+                    "large",
+                    "original"
+                    ]
+                },
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"eventId is missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post/{postId}",
+        "description":"Operation for updating metadata on a post.",
+        "operations":[
+        {
+            "httpMethod":"PUT",
+            "summary":"Update meta data for previousely sent post. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"putPostById",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id of the post to be updated.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"authorId",
+                "description":"The id of the author the post belongs to.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"eventId",
+                "description":"The id of the event the post shall be assigned to.",
+                "paramType":"query",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"integer"
+            },
+            {
+                "name":"content",
+                "description":"A description for the post.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"location",
+                "description":"Comma-separated latitude, longitude pair in degrees, e.g. '52.519444, 13.406667'.",
+                "paramType":"query",
+                "required":false,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId, authorId, eventId or location are missing."
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post/{postId}",
+        "description":"Operation for removing a post.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Delete a post by id. <strong style=\"color: black\">(Auth)</strong>",
+            "notes":"This can only be done by the logged in user.",
+            "responseClass":"void",
+            "nickname":"deletePostById",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id for the post that shall be deleted.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId is missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    },
+    {
+        "path":"/post/{postId}/unlike/{userId}",
+        "description":"Operation for unliking a post.",
+        "operations":[
+        {
+            "httpMethod":"DELETE",
+            "summary":"Unlike a post. <strong style=\"color: black\">(Auth)</strong>",
+            "responseClass":"void",
+            "nickname":"deletePostUnLike",
+            "notes": "Requires the permission <strong>event:create-content</strong>",
+            "parameters":[
+            {
+                "name":"postId",
+                "description":"The id of the post that shall be unliked.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            },
+            {
+                "name":"userId",
+                "description":"The id of the user that wants to unlike the post.",
+                "paramType":"path",
+                "required":true,
+                "allowMultiple":false,
+                "dataType":"string"
+            }
+            ],
+            "errorResponses":[
+            {
+                "code":400,
+                "reason":"postId or userId are missing."
+            },
+            {
+                "code":401,
+                "reason":""
+            },
+            {
+                "code":403,
+                "reason":""
+            },
+            {
+                "code":405,
+                "reason":""
+            },
+            {
+                "code":409,
+                "reason":""
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

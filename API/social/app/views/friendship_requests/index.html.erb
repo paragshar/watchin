@@ -1,0 +1,14 @@
+<h2>My Friendship Request</h2>
+<%= debug @friend_requests %>
+
+
+<ul>
+  <% for request in @friend_requests %>
+  <li>
+    <%= h request.id %>, <%= h request.user.name %>, <%= h request.user.email %>
+   (<%= link_to "Reject", request, :method => :delete %>)
+     
+  </li>
+  <% end %>  
+</ul>
+

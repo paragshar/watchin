@@ -1,0 +1,13 @@
+    <% if !programmes.blank? %>
+      
+      <%= select_tag "message[programme_id]", options_from_collection_for_select(programmes, "id", "name"), :prompt => "Select Programme" %>
+    <% else %>
+    
+     	<% if !@programmes.blank? %>
+     		<%= select_tag 'message[programme_id]', options_for_select(@programmes.collect{|p| [p.name, p.id] }, @message.programme_id) %>	
+     	<% else %>
+     		<%= select("message", "programme_id","" , {prompt: "Select Programme"}) %>	
+     	<% end %>
+      
+      
+    <% end %>

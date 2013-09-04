@@ -1,0 +1,37 @@
+<h1>Add New Message </h1>
+
+<%= form_for @message do |f| %>
+	<% if @message.errors.any? %>
+		<h2>Errors:</h2>
+		<ul>
+			<% @message.errors.full_messages.each do |m| %>	
+				<li> <%= m %></li>
+			<% end %>	
+		</ul>
+	<% end %>
+	<p>
+		<%= f.label :Channel %><br />
+		<%= select_tag "message[channel_id]", options_from_collection_for_select(@channels, "id", "name"), :prompt => "Select Channel" %>
+	</p>
+	<p>
+		<%= f.label :Programme %><br />
+		<div id="programmeDiv">
+        <%= render :partial => 'shared/programmes' %>
+        
+        </div>
+	</p>
+	<p>
+		<%= f.label :message %><br />
+		<%= f.text_area :message, :cols => 20, :rows =>3 %>
+	</p>
+	<p>
+		<%= f.label "View Option" %><br />
+		<%= select_tag "message[view_ability]", options_for_select([ "Public", "Private" ], @message.view_ability) %>
+	</p>
+	
+	
+	<p>
+		<%= f.submit "Save Message" %>
+	</p>
+
+<% end %>

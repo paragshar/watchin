@@ -1,0 +1,35 @@
+<% debug @friends_ids %>
+<% debug @frnd_messages %>
+<%= debug @channels_ids %>
+<h1>My Friends Messages</h1>
+<table width="100%" border="1">
+	<th>Id</th>
+	<th>Message</th>
+	<th>User</th>
+	<th>Channel</th>
+	<th>Programme</th>
+	<th>View Option</th>
+	<th>Status</th>
+	<th>Created</th>
+	<th>Updated</th>
+	<th>Action</th>
+	<% @frnd_messages.each do |message| %>
+	<tr>
+		<td><%= message.id %></td>
+		<td><%= message.message %></td>
+		<td><%= message.user.name %></td>
+		<td><%= message.channel.name %></td>
+		<td><%= message.programme.name %></td>
+		<td><%= message.view_ability %></td>
+		<td><% if message.status %>
+			Active
+			<% else %>
+			Block
+			<% end %>
+		</td>
+		<td><%= time_ago_in_words(message.created_at) %></td>
+		<td><%= time_ago_in_words(message.updated_at) %></td>
+		<td>(<%= link_to "View", message_path(message) %>)</td>
+	</tr>
+	<% end %>
+</table>
